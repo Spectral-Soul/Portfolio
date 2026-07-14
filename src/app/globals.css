@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0a0b0d;
+  --surface: #101216;
+  --surface-hover: #15181d;
+  --border-hairline: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.18);
+  --foreground: #edeef0;
+  --muted: #9199a6;
+  --accent: #6C7BFF;
+  --accent-soft: rgba(108, 123, 255, 0.12);
+  --accent-strong: #8A96FF;
+  --online: #34d399;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-accent: var(--accent);
+  --color-online: var(--online);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+.font-display {
+  font-family: var(--font-display), sans-serif;
+}
+
+.font-technical {
+  font-family: var(--font-geist-mono), monospace;
+}
+
+/* Panel surface used across cards, nav, forms */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border-hairline);
+}
+
+.panel-hover:hover {
+  background: var(--surface-hover);
+  border-color: var(--border-strong);
+}
+
+/* Fine grid backdrop, used sparingly */
+.bg-grid-pattern {
+  background-size: 44px 44px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+}
+
+/* Smooth accordion transition wrapper */
+.accordion-content {
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease-out;
+}
+
+/* Marquee for the stack strip */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee 28s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Live status blip */
+@keyframes blip {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.animate-blip {
+  animation: blip 1.6s ease-in-out infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #23262c;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #34383f;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .animate-blip {
+    animation: none !important;
+  }
+}
